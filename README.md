@@ -74,5 +74,6 @@ Build apk with
 **NOTE:** 
 - before last step use `export GRADLE_OPTS="-Xms1724m -Xmx5048m -Dorg.gradle.jvmargs='-Xms1724m -Xmx5048m'"` if having build fails saying `Execution failed for task ':packageDebug'.`
 - use the specified buildozer.spec file only
-- if icons don't get displayed, then buildozer did not install the last mentioned requirement from `buildozer.spec` . Happend with me, add any random library or add name of a library twice, one being at the end of list. (for eg: add kivy==2.0.0 in `buildozer.spec` at the end of the line saying `requirements: `)
+- if icons don't get displayed, then buildozer did not install the last mentioned requirement from `buildozer.spec` . Happend with me, add any random library or add name of a library twice, one being at the end of list. 
+(for eg: add kivy==2.0.0 in `buildozer.spec` at the end of the line saying `requirements: `)
   
