@@ -2,7 +2,7 @@
 
 An android piano app made in Kivy(python)
 
-Visit [Releases](./releases) to download .apk
+Visit [Releases](#/releases) to download .apk
 
 ## Table of contents:
 - [General Info](#General-Info)
