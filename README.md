@@ -1,4 +1,4 @@
-![image](./buildozer/data/github_image.png)
+![image](./github_image/github.png)
 
 An android piano app made in Kivy(python)
 
