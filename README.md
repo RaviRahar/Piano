@@ -17,7 +17,8 @@ Secondly, the apk's are so big because wav files for audio were used. Those are 
 
 ## Screenshots
 ![Screenshot1](./.github_image/Screenshot(1).png)
-![Screenshot2](./.github_image/Screenshot(2).png) ![Screenshot3](./.github_image/Screenshot(3).png)
+![Screenshot2](./.github_image/Screenshot(2).png)
+![Screenshot3](./.github_image/Screenshot(3).png)
 
 ## Tools Used
 
