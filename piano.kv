@@ -1,0 +1,183 @@
+#: kivy 2.0.0
+# -*- coding: utf-8 -*-
+
+#: import Window kivy.core.window.Window
+#: import Animation kivy.animation.Animation
+
+ScreenManagement:
+    DummyScreen:
+    MainScreen:
+    SettingsScreen:
+    AboutScreen:
+
+
+<MainScreen>:
+    name: 'main'  
+    MDFloatLayout:
+        md_bg_color: (1, 0, 0, 1) if app.theme_cls.theme_style=='Dark' else (1, 1, 1, 1)
+
+        MDStackLayout:
+            id: white_notes_layout
+            padding: '0dp'
+            spacing: '0dp'
+            md_bg_color: (.3, .3, .3, 1) if app.theme_cls.theme_style=='Dark' else (1, 1, 1, 1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        MDFloatLayout:
+            id: black_notes_layout
+
+        MDFloatingActionButtonSpeedDial:
+            id: speed_dial_stack
+            root_button_anim: True
+            callback: root.speed_dial_call
+            data: 
+                {'Beat': 'music-circle-outline',
+                'Theme': 'theme-light-dark',
+                'Settings': 'cog-outline'}
+
+<SettingsScreen>:
+    name: 'settings'
+    on_touch_up: 
+        if not self.ids.individual_settings.collide_point(*Window.mouse_pos):  self.individual_settings_card_state('down') 
+
+    MDFloatLayout:
+        id: float_settings
+        md_bg_color: (0, 0, 0, 1) if app.theme_cls.theme_style=='Dark' else (1, 1, 1, 1)
+
+        MDStackLayout:
+            id: all_settings
+            padding: '0dp'
+            spacing: '0dp'
+            md_bg_color: (0, 0, 0, 1) if app.theme_cls.theme_style=='Dark' else (1, 1, 1, 1)
+            size_hint: None, None
+            size: root.width, root.height
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+            MDFlatButton:
+                text: 'Theme'
+                pos_hint: {'center_x': .5}
+                size_hint: None,None
+                size: root.ids.all_settings.width, '65dp'
+                on_release:  
+                    if root.ids.themeswitch.active==True: root.ids.themeswitch.active=False
+                    else: root.ids.themeswitch.active=True
+            MDFlatButton:
+                text: 'Beat'
+                pos_hint: {'center_x': .5}
+                size_hint: None,None
+                size: root.ids.float_settings.width, '65dp'
+                on_release: 
+                    if root.ids.beatswitch.active==True: root.ids.beatswitch.active=False
+                    else: root.ids.beatswitch.active=True
+            MDFlatButton:
+                text: 'Beats'
+                pos_hint: {'center_x': .5}
+                size_hint: None,None
+                size: root.ids.all_settings.width, '65dp'
+                on_release: root.individual_settings_card_state('up')
+            MDSeparator:
+                height: '1dp'
+            MDFlatButton:
+                text: 'About'
+                pos_hint: {'center_x': .5}
+                size_hint: None,None
+                size: root.ids.all_settings.width, '65dp'
+                on_release: root.manager.current='about'
+
+        MDSwitch:
+            id: themeswitch 
+            pos: root.width-dp(80), root.height-dp(55)
+            on_active:
+                root.theme_switch(app)
+        MDSwitch:
+            id: beatswitch 
+            pos: root.width-dp(80), root.height-dp(120)
+            on_active: 
+                root.beat_switch()
+
+        MDCard:
+            id: individual_settings
+            orientation: 'vertical'
+            radius: '10dp'
+            padding: '0dp'
+            spacing: '0dp'
+            my_y_hint: 0 # custom name
+            size_hint: 0.95, root.height
+            pos_hint: {'center_x': 0.5, 'top': self.my_y_hint}
+            md_bg_color: (.3, .3, .3, 1) if app.theme_cls.theme_style=='Dark' else (1, 1, 1, 1)
+
+            MDFloatLayout:
+
+                MDStackLayout:
+                    padding: '0dp'
+                    spacing: '0dp'
+                    size_hint: None, None
+                    size: root.ids.individual_settings.width, root.ids.individual_settings.height
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+                    MDLabel:
+                        text: root.active_beat
+                        halign: 'center'
+                        pos_hint: {'center_x': .5}
+                        size_hint: None,None
+                        size: root.ids.individual_settings.width, '65dp'
+                    MDSeparator:
+                        height: '1dp'
+                    MDFlatButton:
+                        text: 'Beat 1'
+                        pos_hint: {'center_x': .5}
+                        size_hint: None,None
+                        size: root.ids.individual_settings.width, '65dp'
+                        on_release: root.change_beat(self)
+                    MDFlatButton:
+                        text: 'Beat 2'
+                        pos_hint: {'center_x': .5}
+                        size_hint: None,None
+                        size: root.ids.individual_settings.width, '65dp'
+                        on_release: root.change_beat(self)
+                    MDFlatButton:
+                        text: 'Beat 3'
+                        pos_hint: {'center_x': .5}
+                        size_hint: None,None
+                        size: root.ids.individual_settings.width, '65dp'
+                        on_release: root.change_beat(self)
+                    MDFlatButton:
+                        text: 'Beat 4'
+                        pos_hint: {'center_x': .5}
+                        size_hint: None,None
+                        size: root.ids.individual_settings.width, '65dp'
+                        on_release: root.change_beat(self)
+                    MDFlatButton:
+                        text: 'Beat 5'
+                        pos_hint: {'center_x': .5}
+                        size_hint: None,None
+                        size: root.ids.individual_settings.width, '65dp'
+                        on_release: root.change_beat(self)
+
+<AboutScreen>:
+    name: 'about'
+    MDBoxLayout:
+        id: about
+        spacing: '10dp'
+        padding: '10dp'
+        orientation: 'vertical'
+        md_bg_color: (0, 0, 0, 1) if app.theme_cls.theme_style=='Dark' else (1, 1, 1, 1)
+        
+        AboutCard:
+            size_hint: (1, 0.3)
+            MDLabel:
+                text: '[size=30][color=#a8e6cf]P[/color][color=#dcedc1]i[/color][color=#ffd3b6]a[/color][color=#ffaaa5]N[/color][color=#ff8b94]o[/color][/size]'
+                markup: True
+                halign: 'center'
+        AboutCard:
+            id: about_developer
+            size_hint: (1,None)
+            height: '200dp'
+        AboutCard:
+            id: about_app
+            
+<AboutCard@MDCard>:
+    orientation: 'vertical'
+    radius: '15dp'
+    spacing: '0dp'
+    padding: '0dp'
