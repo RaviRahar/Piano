@@ -16,8 +16,8 @@ This was an app made just to learn kivy. There may be releases of this app (Or n
 Secondly, the apk's are so big because wav files for audio were used. Those are not used by choice, rather only wav files were able to play on android after deployment (because of p4android, kivy works great with mp3).
 
 ## Screenshots
-![Screenshot1](./.github_image/Screenshot(1).png
-![Screenshot2](./.github_image/Screenshot(2).png ![Screenshot3](./.github_image/Screenshot(3).png
+![Screenshot1](./.github_image/Screenshot(1).png)
+![Screenshot2](./.github_image/Screenshot(2).png) ![Screenshot3](./.github_image/Screenshot(3).png)
 
 ## Tools Used
 
